@@ -1,0 +1,41 @@
+body {
+  background: rgba(229, 233, 16, 0.576)
+}
+
+#stressedImage{
+  display:flex;
+  justify-content:center;
+}
+#Title {
+  display:flex;
+  justify-content:center;
+}
+.information {
+  //margin-top:100px; 
+  display: flex;
+  flex-direction: column;
+  //justify-content: flex-end;
+  align-items: flex-start;
+  font-size: 1.5em;
+}
+
+.information input {
+  display: flex;
+  padding-right: 500px;
+  width: 500px;
+  height:30px;
+  font-size:1em;
+
+}
+.information button {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 100px;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.information button:hover {
+  cursor : pointer;
+}
