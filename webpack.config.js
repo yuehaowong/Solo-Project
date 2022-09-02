@@ -1,9 +1,22 @@
 const path = require('path');
 const htmlPlugin = require('html-webpack-plugin');
-
+const { webpack } = require('webpack');
 
 module.exports = {
   entry: './client/index.js',
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, './bundleFolder'),
+      publicPath: '/',
+    },
+    proxy: {
+      '/api':'http://localhost:3001',
+    },
+    compress: false,
+    host: 'localhost',
+    port: 8080,
+    hot: true,
+  },
   
   output: {
     filename: 'bundle.js',
@@ -16,7 +29,7 @@ module.exports = {
         template:'./client/index.html'
     })
   ],
-
+ mode: 'production',
   module: {
     rules: [
       {

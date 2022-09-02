@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const PORT = 3001
-
+const cors = require('cors')
 const mongoose = require('mongoose');
+const controller = require('./controllers');
+
+app.use(cors());
 
 //parse request coming from frontend
 app.use(express.json());
@@ -13,27 +16,20 @@ mongoose.connect("mongodb+srv://yuehao:test123@cluster1.tw6vzis.mongodb.net/?ret
     console.log("connected to DB")
   })
 
-
-
 app.get("/test", (req, res) => {
   return res.status(200).json({ message: "Just checking if my server actually works!" });
 })
-
-
-app.post("/", (req, res) => {
-  const daysLeft = req.body.daysLeft;
-  const daysStudy = req.body.daysStudy
-  const studyHours = req.body.studyHours
-  const budget = req.body.budget
+//add controller
+app.post("/api", controller.createInfo, controller.renderLogic, (req, res) => {
+  //console.log("this is api post")
+  return res.status(201).json(res.locals.bootcamp)
 })
 
 //catch all route handler will need to require sendFile ....
-//app.use('*', (req, res) => {
-//  return res.status(404).sendFile
-//})
 
-
-
+app.use("*", (req, res) => {
+  return res.status(404).json({message:" 404 ERROR: THIS IS NOT A PROPER ENDPOINT "})
+})
 //global error handler 
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -45,9 +41,6 @@ app.use((err, req, res, next) => {
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
-
-
-
 
 app.listen(PORT, (req, res) => {
   console.log("Yippie, express is on port 3001")

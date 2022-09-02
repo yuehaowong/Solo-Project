@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot ",
-    "build": "webpack --mode development",
-    "dev": "webpack serve"
+    "start": "nodemon server.js",
+    "build": "webpack",
+    "dev": "NODE_ENV=development webpack serve --open"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/yuehaowong/Solo-Project#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "mongoose": "^6.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -31,6 +33,7 @@
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.19",
     "sass": "^1.54.6",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
